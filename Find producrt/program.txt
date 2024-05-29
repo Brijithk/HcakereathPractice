@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        // Scanner
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt(); // Reading the number of elements
+        int[] dynamicArray = new int[0]; // Initialize an empty array
+
+        // Read and add elements to the dynamic array
+        for (int i = 0; i < num; i++) {
+            int add = sc.nextInt();
+            dynamicArray = addElement(dynamicArray, add);
+        }
+
+        // Compute the result based on the dynamic array
+        int answer = 1;
+        for (int i = 0; i < dynamicArray.length; i++) {
+            answer = (int)(((long)answer * dynamicArray[i]) % 1000000007);
+        }
+
+        System.out.println(answer);
+
+        // Close the scanner
+        sc.close();
+    }
+
+    // Method to add an element to the array
+    public static int[] addElement(int[] array, int element) {
+        int[] newArray = new int[array.length + 1];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        newArray[newArray.length - 1] = element;
+        return newArray;
+    }
+}
